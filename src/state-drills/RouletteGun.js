@@ -1,36 +1,37 @@
 import React from 'react'
 
 class RouletteGun extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            message: 'Safety Off',
-            chamber: null,
-            spinningTheChamber: false
-            }
-        console.log(props)
+    
+    static defaultProps = {
+        bulletInChamber: 8
+    }
+
+    state = {
+        message: 'Safety Off',
+        chamber: null,
+        spinningTheChamber: false,
+        }
+
+    componentDidMount() {
+        console.log('componentDidMount')
+        console.log(this.props)
         console.log(this.state)
-        }
-        
-        componentDidMount() {
-            console.log('componentDidMount')
-        }
+    }
 
-        handleButtonClick() {
-            console.log('button clicked')
-            this.setState({message: 'Bang'},
-            {spinningTheChamber:true})
-        }
+    handleButtonClick() {
+        console.log('button clicked')
+        this.setState(
+            {message: 'Trigger Pulled!',
+            spinningTheChamber:true})
+    }
 
-        render() {
-            return (
-            <div>
-                <p>{this.state.message}</p>
-                <button onClick={this.handleButtonClick}>Pull Trigger!</button>
-            </div> )
-        }
-
-        
+    render() {
+        return (
+        <div>
+            <p>{this.state.message}</p>
+            <button onClick={this.handleButtonClick.bind(this)}>Pull Trigger!</button>
+        </div> )
+    }
     }
 
 export default RouletteGun
