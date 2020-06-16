@@ -3,13 +3,22 @@ import React from 'react'
 class RouletteGun extends React.Component {
     
     static defaultProps = {
-        bulletInChamber: 8
+        spinningTheChamber: false
     }
 
     state = {
         message: 'Safety Off',
-        chamber: null,
-        spinningTheChamber: false,
+        bulletInChamber: 8,
+        chamber: null
+    }
+
+    calculateMessage() {
+        if (this.state.bulletInChamber === this.state.chamber) {
+            this.setState( 
+                {message: 'BANG!!!!'}
+            )} else {
+            console.log('No Fire')
+            }
         }
 
     componentDidMount() {
@@ -22,8 +31,17 @@ class RouletteGun extends React.Component {
         console.log('button clicked')
         this.setState(
             {message: 'Trigger Pulled!',
-            spinningTheChamber:true})
+            spinningTheChamber: true},
+        )
+        setTimeout(() => {
+            this.setState(
+                {chamber: Math.ceil(Math.random() * 8),
+                 spinningTheChamber: false}
+            )
+            console.log(this.state)}, 2000)
+        calculateMessage()
     }
+
 
     render() {
         return (
@@ -37,6 +55,10 @@ class RouletteGun extends React.Component {
 export default RouletteGun
 
 
-// spinning the chamber and pulling the trigger! ...
-// you're safe!
-// BANG!!!!
+// this.setState( 
+//     {message: "you're safe!"}
+//     )
+
+// this.setState( 
+//     {message: 'BANG!!!!'}
+//     )
