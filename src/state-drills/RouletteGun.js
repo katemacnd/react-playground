@@ -3,23 +3,14 @@ import React from 'react'
 class RouletteGun extends React.Component {
     
     static defaultProps = {
-        spinningTheChamber: false
+        bulletInChamber: 8
     }
 
     state = {
         message: 'Safety Off',
-        bulletInChamber: 8,
-        chamber: null
+        chamber: null,
+        spinningTheChamber: false,
     }
-
-    calculateMessage() {
-        if (this.state.bulletInChamber === this.state.chamber) {
-            this.setState( 
-                {message: 'BANG!!!!'}
-            )} else {
-            console.log('No Fire')
-            }
-        }
 
     componentDidMount() {
         console.log('componentDidMount')
@@ -30,23 +21,30 @@ class RouletteGun extends React.Component {
     handleButtonClick() {
         console.log('button clicked')
         this.setState(
-            {message: 'Trigger Pulled!',
-            spinningTheChamber: true},
+            {spinningTheChamber: true},
         )
         setTimeout(() => {
             this.setState(
                 {chamber: Math.ceil(Math.random() * 8),
-                 spinningTheChamber: false}
-            )
-            console.log(this.state)}, 2000)
-        calculateMessage()
+                spinningTheChamber: false}
+            )}, 2000
+        )
     }
 
+    renderDisplay() {
+        if (this.state.spinningTheChamber=true) {
+            return 'spinning the chamber and pulling the trigger! ...'
+        } else if (this.props.bulletInChamber === this.state.chamber) {
+            return ('BANG!!!!')
+        } else {
+            return 'you\'re safe!'
+        }
+    }
 
     render() {
         return (
         <div>
-            <p>{this.state.message}</p>
+            <p>{this.renderDisplay()}</p>
             <button onClick={this.handleButtonClick.bind(this)}>Pull Trigger!</button>
         </div> )
     }
