@@ -7,7 +7,6 @@ class RouletteGun extends React.Component {
     }
 
     state = {
-        message: 'Safety Off',
         chamber: null,
         spinningTheChamber: false,
     }
@@ -51,12 +50,3 @@ class RouletteGun extends React.Component {
     }
 
 export default RouletteGun
-
-
-// this.setState( 
-//     {message: "you're safe!"}
-//     )
-
-// this.setState( 
-//     {message: 'BANG!!!!'}
-//     )
