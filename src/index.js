@@ -4,4 +4,4 @@ import App from './App';
 import './index.css';
 import RouletteGun from './state-drills/RouletteGun'
 
-ReactDOM.render(<RouletteGun chamber='null' spinningTheChamber='false' bulletInChamber/>, document.getElementById('root'));
+ReactDOM.render(<RouletteGun chamber='null' spinningTheChamber='false'/>, document.getElementById('root'));
