@@ -1,20 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
-import Messages from './Messages';
-import TheDate from './state/TheDate'
-import Counter from './state/Counter'
+// import Messages from './Messages';
+// import TheDate from './state/TheDate'
+// import Counter from './state/Counter'
+import Accordion from './state-drills/Accordion.js'
+// import Tabs from './state/Tabs'
 
-class App extends Component {
+class App extends React.Component {
   render() {
-    return (
-      <div className="App">
-        <h1>YOUR APPLICATION NAME!</h1>
-        <Messages name="Messages" unread={0}/>
-        <Messages name="Notifications" unread={10}/>
-        <TheDate />
-        <Counter count={123} />
-      </div>
-    );
+    return <div>
+      <Accordion />
+    </div>
   }
 }
 
