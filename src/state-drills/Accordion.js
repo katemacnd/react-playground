@@ -16,28 +16,36 @@ class Accordion extends React.Component {
               title: 'Section 3',
               content: 'Animi amet cumque sint cupiditate officia ab voluptatibus libero optio et?',
             },
-          ]
+        ]
     }
+    state = {
+        currentSectionIndex: 0
+    };
 
     handleButtonClick(i) {
-        this.setState({ currentTabIndex: i })
+        this.setState({ currentSectionIndex: i })
       }
 
     renderButtons() {
-        return this.props.sections.map((sections, i) => (
-            <button key={i} onClick={() => this.renderSection(i)}>
-              {this.props.sections[i].title}
-            </button>
+        return this.props.sections.map((section, i) => (
+            <li>
+                <button key={i} onClick={() => this.handleButtonClick(i)}>
+              {section.title}
+                </button>
+                {this.renderContent(i)}
+            </li>
           ))
     }
 
-    renderSection(i) {
-        const SectionSelected = this.props.sections[this.state.currentTabIndex].content
-        return (
-            <p>
-           {SectionSelected}
-            </p>
-        )
+    renderContent(i) {
+        if (this.state.currentSectionIndex === i) {
+            const contentSelected = this.props.sections[this.state.currentSectionIndex].content
+            return (
+                <p>
+                    {contentSelected}
+                </p>
+            )
+        }
     }
 
     render() {
@@ -45,7 +53,6 @@ class Accordion extends React.Component {
             <div>
                 <ul>
                 {this.renderButtons()}
-                {this.renderSection()}
                 </ul>
             </div>
         )
